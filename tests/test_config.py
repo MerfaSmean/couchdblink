@@ -9,5 +9,5 @@ class TestConfig(TestCaseBase):
         self.assertIsInstance(config.CRED_URL, str)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

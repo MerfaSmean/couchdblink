@@ -2,6 +2,7 @@ import json
 
 try:
     from .nogit import extra_config
+
     # print("config loading with nogit.extra_config")
 except ImportError:
     # print("config loading without nogit.extra_config")
