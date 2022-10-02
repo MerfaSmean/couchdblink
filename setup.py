@@ -1,4 +1,3 @@
-import os
 from setuptools import setup
 
 with open("README.md", "r") as fh:
@@ -16,7 +15,7 @@ setup(
     author_email="soundmaking@merfasmean.com",
     license="MIT",
     packages=["couchdblink"],
-    install_requires=[],
+    install_requires=["pycouchdb"],
     classifiers=[
         # How mature is this project? Common values are
         #   3 - Alpha

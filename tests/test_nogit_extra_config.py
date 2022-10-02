@@ -1,8 +1,7 @@
-import unittest
 import json
+import unittest
 
-from .base import TestCaseBase
-
+from base import TestCaseBase
 from couchdblink.nogit import extra_config
 
 

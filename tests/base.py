@@ -1,6 +1,6 @@
-import unittest
 import json
 import pathlib as pl
+import unittest
 
 
 class TestCaseBase(unittest.TestCase):
@@ -16,3 +16,7 @@ class TestCaseBase(unittest.TestCase):
                 json.load(f)
         except json.decoder.JSONDecodeError:
             raise AssertionError("File does not decode as JSON: %s" % str(path))
+
+
+class TestCaseWithCred(TestCaseBase):
+    pass
