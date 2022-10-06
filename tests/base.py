@@ -4,6 +4,8 @@ import random
 import string
 import unittest
 
+import couchdblink.server_functions as sfn
+
 
 class TestCaseBase(unittest.TestCase):
     @staticmethod
@@ -26,5 +28,12 @@ class TestCaseBase(unittest.TestCase):
         )
 
 
-class TestCaseWithCred(TestCaseBase):
-    pass
+class TestCaseWithDb(TestCaseBase):
+    def setUp(self):
+        self.server = sfn.get_couchdb_connection()
+        self.test_name = self.random_str(16, prefix="test")
+        self.server.create(self.test_name)
+
+    def tearDown(self):
+        self.server.delete(self.test_name)
+        self.server.resource.session.close()

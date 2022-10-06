@@ -3,7 +3,7 @@ import unittest
 from pycouchdb import client
 
 import couchdblink.server_functions as sfn
-from base import TestCaseBase
+from base import TestCaseBase, TestCaseWithDb
 
 
 class TestGetCouchdbConnection(TestCaseBase):
@@ -32,19 +32,10 @@ class TestMakeDb(TestCaseBase):
         self.server.resource.session.close()
 
 
-class TestGetDb(TestCaseBase):
-    def setUp(self):
-        self.server = sfn.get_couchdb_connection()
-        self.test_name = self.random_str(16, prefix="test")
-        self.server.create(self.test_name)
-
+class TestGetDb(TestCaseWithDb):
     def test_get_db(self):
         db = sfn.get_make_db(self.server, self.test_name)
         self.assertIsInstance(db, client.Database)
-
-    def tearDown(self):
-        self.server.delete(self.test_name)
-        self.server.resource.session.close()
 
 
 if __name__ == "__main__":
