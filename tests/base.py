@@ -1,5 +1,7 @@
 import json
 import pathlib as pl
+import random
+import string
 import unittest
 
 
@@ -16,6 +18,12 @@ class TestCaseBase(unittest.TestCase):
                 json.load(f)
         except json.decoder.JSONDecodeError:
             raise AssertionError("File does not decode as JSON: %s" % str(path))
+
+    @staticmethod
+    def random_str(k=21, prefix=""):
+        return prefix + "".join(
+            random.choices(string.ascii_lowercase + string.digits, k=k)
+        )
 
 
 class TestCaseWithCred(TestCaseBase):

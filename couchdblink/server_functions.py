@@ -11,6 +11,10 @@ def get_couchdb_connection(cred_url=""):
     return pycouchdb.Server(cred_url, authmethod="session")
 
 
+def close_connection(server):
+    server.resource.session.close()
+
+
 def get_make_db(server, db_name):
     try:
         return server.database(db_name)
