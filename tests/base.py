@@ -29,11 +29,15 @@ class TestCaseBase(unittest.TestCase):
 
 
 class TestCaseWithDb(TestCaseBase):
+    cred_url = None
+    delete_db_in_tearDown = True
+
     def setUp(self):
-        self.server = sfn.get_couchdb_connection()
+        self.server = sfn.get_couchdb_connection(self.cred_url)
         self.test_name = self.random_str(16, prefix="test")
         self.server.create(self.test_name)
 
     def tearDown(self):
-        self.server.delete(self.test_name)
+        if self.delete_db_in_tearDown:
+            self.server.delete(self.test_name)
         self.server.resource.session.close()

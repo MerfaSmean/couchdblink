@@ -1,20 +1,30 @@
 import unittest
 
 from pycouchdb import client
+from requests.exceptions import ConnectionError
 
 import couchdblink.server_functions as sfn
+import local_config
 from base import TestCaseBase, TestCaseWithDb
 
 
 class TestGetCouchdbConnection(TestCaseBase):
     def test_connection_no_args(self):
         s = sfn.get_couchdb_connection()
-        self.assertIsInstance(s, client.Server)
+        self.assertIn("version", s.info())
         sfn.close(s)
 
-    def test_connection_no_login(self):
-        s = sfn.get_couchdb_connection()
-        self.assertIsInstance(s, client.Server)
+    def test_connection_lan_server(self):
+        s = sfn.get_couchdb_connection(local_config.lan_server_url)
+        self.assertIn("version", s.info())
+        sfn.close(s)
+
+    def test_connection_lan_server_fail(self):
+        s = sfn.get_couchdb_connection(local_config.lan_server_url_wrong)
+        try:
+            s.info()
+        except ConnectionError:
+            pass
         sfn.close(s)
 
 
@@ -33,6 +43,8 @@ class TestMakeDb(TestCaseBase):
 
 
 class TestGetDb(TestCaseWithDb):
+    cred_url = local_config.lan_server_cred_url
+
     def test_get_db(self):
         db = sfn.get_make_db(self.server, self.test_name)
         self.assertIsInstance(db, client.Database)
