@@ -10,12 +10,12 @@ class TestGetCouchdbConnection(TestCaseBase):
     def test_connection_no_args(self):
         s = sfn.get_couchdb_connection()
         self.assertIsInstance(s, client.Server)
-        s.resource.session.close()
+        sfn.close(s)
 
     def test_connection_no_login(self):
         s = sfn.get_couchdb_connection()
         self.assertIsInstance(s, client.Server)
-        s.resource.session.close()
+        sfn.close(s)
 
 
 class TestMakeDb(TestCaseBase):

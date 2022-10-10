@@ -11,7 +11,15 @@ def get_couchdb_connection(cred_url=""):
     return pycouchdb.Server(cred_url, authmethod="session")
 
 
-def close_connection(server):
+def close(server):
+    """
+    Shortcut for closing a server's resource session -
+    added after finding that unittests on
+    get_couchdb_connection() were raising
+    `ResourceWarning: unclosed <ssl.SSLSocket ...` warnings
+    :param server: pycouchdb.Server
+    :return:
+    """
     server.resource.session.close()
 
 
