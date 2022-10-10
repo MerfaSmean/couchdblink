@@ -8,6 +8,9 @@ import couchdblink.server_functions as sfn
 
 
 class TestCaseBase(unittest.TestCase):
+    cred_url = None
+    delete_db_in_tearDown = True
+
     @staticmethod
     def assertIsFile(path):
         if not pl.Path(path).resolve().is_file():
@@ -29,9 +32,6 @@ class TestCaseBase(unittest.TestCase):
 
 
 class TestCaseWithDb(TestCaseBase):
-    cred_url = None
-    delete_db_in_tearDown = True
-
     def setUp(self):
         self.server = sfn.get_couchdb_connection(self.cred_url)
         self.test_name = self.random_str(16, prefix="test")

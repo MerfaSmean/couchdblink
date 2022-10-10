@@ -5,7 +5,7 @@ from requests.exceptions import ConnectionError
 
 import couchdblink.server_functions as sfn
 import local_config
-from base import TestCaseBase, TestCaseWithDb
+from couchdblink.unittestbase import TestCaseBase, TestCaseWithDb
 
 
 class TestGetCouchdbConnection(TestCaseBase):
