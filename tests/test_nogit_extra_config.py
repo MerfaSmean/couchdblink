@@ -1,8 +1,8 @@
 import json
 import unittest
 
-from couchdblink.nogit import extra_config
-from couchdblink.unittestbase import TestCaseBase
+from src.couchdblink.nogit import extra_config
+from src.couchdblink.unittestbase import TestCaseBase
 
 
 class TestNoGitExtraConf(TestCaseBase):

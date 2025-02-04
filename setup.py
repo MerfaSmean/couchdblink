@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -14,7 +14,9 @@ setup(
     author="Samuel Freeman",
     author_email="soundmaking@merfasmean.com",
     license="MIT",
-    packages=["couchdblink"],
+    #packages=["couchdblink"],
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     install_requires=["pycouchdb"],
     classifiers=[
         # How mature is this project? Common values are

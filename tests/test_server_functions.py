@@ -3,9 +3,9 @@ import unittest
 from pycouchdb import client
 from requests.exceptions import ConnectionError
 
-import couchdblink.server_functions as sfn
+import src.couchdblink.server_functions as sfn
 import local_config
-from couchdblink.unittestbase import TestCaseBase, TestCaseWithDb
+from src.couchdblink.unittestbase import TestCaseBase, TestCaseWithDb
 
 
 class TestGetCouchdbConnection(TestCaseBase):

@@ -1,7 +1,7 @@
 import unittest
 
-from couchdblink import config
-from couchdblink.unittestbase import TestCaseBase
+from src.couchdblink import config
+from src.couchdblink.unittestbase import TestCaseBase
 
 
 class TestConfig(TestCaseBase):
